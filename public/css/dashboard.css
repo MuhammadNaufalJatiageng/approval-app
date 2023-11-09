@@ -1,0 +1,83 @@
+* {
+    font-size: 13px;
+}
+
+th,
+td{
+    padding: 4px;
+}
+
+body {
+    background: rgb(144, 139, 139);
+}
+.navbar-brand {
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: 2px;
+}
+
+.header {
+    background: linear-gradient(#141e30, #243b55);
+}
+
+.nav {
+    width: 100%;
+}
+
+.activated {
+    background-color: rgb(76, 76, 76);
+}
+
+.approval,
+.no {
+    width: 30px;
+}
+.date {
+    width: 60px;
+}
+.desc {
+    width: 300px;
+}
+.file {
+    width: 90px;
+}
+.no-dokumen {
+    width: 65px;
+}
+.no-adp,
+.no-capex {
+    width: 120px;
+}
+.divisi {
+    width: 80px;
+}
+
+div.content-wrapper a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(36, 85, 131);
+}
+
+.approved {
+    background-color: yellow;
+}
+
+.main-content {
+    height: 78vh;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
+    
+}
+div.tabel {
+    height: 92%;
+    overflow: auto;
+}
+
+table {
+    width: 1500px;
+    table-layout: fixed;
+}
+
