@@ -30,42 +30,54 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'role_id' => '3',
-            'nama_depan' => 'Muhammad Naufal',
-            'nama_belakang' => 'Jatiageng',
-            'email' => 'mnja123',
+            'role_name' => 'ofc',
+            'role_id' => 2,
+            'nama_depan' => 'OFC',
+            'username' => 'ofc123',
             'password' => bcrypt('password'),
         ]);
         User::create([
-            'role_id' => '3',
+            'role_name' => 'gl',
+            'role_id' => 2,
+            'nama_depan' => 'gl',
+            'username' => 'gl123',
+            'password' => bcrypt('password'),
+        ]);
+        User::create([
+            'role_name' => 'manager',
+            'role_id' => 2,
+            'nama_depan' => 'manager',
+            'username' => 'manager123',
+            'password' => bcrypt('password'),
+        ]);
+        User::create([
+            'role_name' => 'fm',
+            'role_id' => 2,
+            'nama_depan' => 'fm',
+            'username' => 'fm123',
+            'password' => bcrypt('password'),
+        ]);
+        User::create([
+            'role_name' => 'acc',
+            'role_id' => 2,
+            'nama_depan' => 'acc',
+            'username' => 'acc123',
+            'password' => bcrypt('password'),
+        ]);
+        User::create([
+            'role_name' => 'staff',
+            'role_id' => 3,
             'nama_depan' => 'Hantoko',
-            'email' => 'hantoko',
+            'username' => 'hantoko',
             'password' => bcrypt('password'),
         ]);
         User::create([
-            'role_id' => '3',
+            'role_name' => 'admin',
+            'role_id' => 1,
             'nama_depan' => 'Administrator',
-            'email' => 'admin123',
+            'username' => 'admin123',
             'password' => bcrypt('administrator'),
         ]);
         
-        Proposal::create([
-            'user_id' => 1,
-            'deskripsi' => 'Percobaan pertama dulu gaes',
-            'divisi' => 'produksi',
-            'file_permohonan_adp' => 'filePermohonan.pdf',
-            'file_estimasi_adp' => 'fileEstimasi.pdf',
-            'no_adp' => 'ADP-2021-00011',
-            'no_capex' => '	T/PRJ/2021/00011'
-        ]);
-        Proposal::create([
-            'user_id' => 1,
-            'deskripsi' => 'Percobaan Kedua dulu gaes',
-            'divisi' => 'proses',
-            'file_permohonan_adp' => 'filePermohonan.pdf',
-            'file_estimasi_adp' => 'fileEstimasi.pdf',
-            'no_adp' => 'ADP-2021-00011',
-            'no_capex' => '	T/PRJ/2021/00011'
-        ]);
     }
 }

@@ -1,3 +1,4 @@
+{{-- @dd(auth()->user()->role()->name); --}}
 @extends('layout.main')
 
 @section('body')
@@ -65,6 +66,9 @@
                 <th scope="col" class="approval">M</th>
                 <th scope="col" class="approval">FM</th>
                 <th scope="col" class="approval">ACC</th>
+                @if (auth()->user()->role_id === 2)
+                  <th scope="col" class="action">ACTION</th>
+                @endif
               </tr>
             </thead>
             <tbody>
@@ -73,21 +77,31 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $item->divisi }}</td>
                     <td>{{ $item->id }}</td>
-                    <td>{{ mb_strimwidth($item->deskripsi, 0,55,'...') }}</td>
-                    <td>
-                      <a href="/file_permohonan/{{ $item->file_permohonan_adp }}" download>{{ mb_strimwidth($item->file_permohonan_adp, 0, 17, '...') }}</a>
+                    <td>{{ $item->deskripsi}}</td>
+                    <td class="text-center">
+                      <a href="/file_permohonan/{{ $item->file_permohonan_adp }}" download><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
                     </td>
-                    <td>
-                      <a href="/file_estimasi/{{ $item->file_estimasi_adp }}" download>{{ mb_strimwidth($item->file_estimasi_adp, 0, 17, '...') }}</a>
+                    <td class="text-center">
+                      <a href="/file_estimasi/{{ $item->file_estimasi_adp }}" download><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
                     </td>
                     <td>{{ mb_strimwidth($item->created_at, 0, 10) }}</td>
                     <td>{{ $item->no_adp }}</td>
                     <td>{{ $item->no_capex }}</td>
-                    <td class="approved"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td class="{{ ($item->ofc === 1 ? 'approved' : '') }}"></td>
+                    <td class="{{ ($item->gl === 1 ? 'approved' : '') }}"></td>
+                    <td class="{{ ($item->manager === 1 ? 'approved' : '') }}"></td>
+                    <td class="{{ ($item->fm === 1 ? 'approved' : '') }}"></td>
+                    <td class="{{ ($item->acc === 1 ? 'approved' : '') }}"></td>
+                    @if (auth()->user()->role->name === "approver")
+                      <td>
+                        <form action="/dashboard/{{ $item->id }}" method="post" enctype="multipart/form-data">
+                          @method('PUT')
+                          @csrf
+                          <button type="submit" class="btn btn-primary">Approve</button>
+                          {{-- <button type="submit" class="btn btn-primary {{ ($item->ofc === 1 ? 'disabled' : '') }}">Approve</button> --}}
+                        </form>
+                      </td>
+                    @endif
                 </tr>
               @endforeach
             </tbody>
@@ -104,7 +118,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
 
-      <form action="/" method="post" enctype="multipart/form-data">
+      <form action="/dashboard" method="post" enctype="multipart/form-data">
         @csrf
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="modalcreateLabel">Upload Permohonan ADP</h1>

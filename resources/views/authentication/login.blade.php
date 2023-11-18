@@ -13,7 +13,7 @@
         <form action="/login" method="post">
             @csrf
             <div class="user-box">
-                <input type="text" name="email" id="email">
+                <input type="text" name="username" id="username" autocomplete="off">
                 <label>Username</label>
             </div>
             <div class="user-box" style="margin-top: 20px">
@@ -23,7 +23,7 @@
                 @error('password')
                     <p class="alert"><small>username atau password salah</small></p>
                 @enderror
-                @error('email')
+                @error('username')
                     <p class="alert"><small>username atau password salah</small></p>
                 @enderror
 

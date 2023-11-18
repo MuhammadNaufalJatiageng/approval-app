@@ -22,6 +22,11 @@ return new class extends Migration
             $table->string('file_estimasi_adp');
             $table->string('no_adp');
             $table->string('no_capex');
+            $table->boolean('ofc');
+            $table->boolean('gl');
+            $table->boolean('manager');
+            $table->boolean('fm');
+            $table->boolean('acc');
             $table->timestamps();
         });
     }

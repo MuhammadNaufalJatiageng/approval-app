@@ -49,10 +49,10 @@
                               {{ auth()->user()->nama_depan }}
                             </a>
                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#">Proflie</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li><a class="dropdown-item fw-semibold" href="#">Proflie</a></li>
+                              <li><a class="dropdown-item fw-semibold" href="#">Another action</a></li>
                               <li><hr class="dropdown-divider"></li>
-                              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                              <li><a class="dropdown-item fw-semibold" href="/logout">Logout</a></li>
                             </ul>
                           </li>
                     </ul>

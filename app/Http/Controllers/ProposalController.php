@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Proposal;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProposalController extends Controller
@@ -16,23 +18,27 @@ class ProposalController extends Controller
     public function index()
     {
         $proposals = Proposal::latest();
+        $users = User::all();
 
-        if(auth()->user()->role_id == 1) 
+        if(auth()->user()->role->name == 'admin') 
         {
             return view('dashboard.index', [
-                'proposals' => $proposals->paginate(12)
+                'proposals' => $proposals->paginate(12),
+                'users' => $users
             ]);
         }
-        else if (auth()->user()->role_id == 2) 
+        else if (auth()->user()->role->name == 'approver') 
         {
             return view('dashboard.index', [
-                'proposals' => $proposals->paginate(12)
+                'proposals' => $proposals->paginate(12),
+                'users' => $users
             ]);
         } 
         else 
         {
             return view('dashboard.index', [
-                'proposals' => Proposal::where('user_id', auth()->user()->id)->paginate(12)
+                'proposals' => Proposal::where('user_id', auth()->user()->id)->latest()->paginate(12),
+                'users' => $users
             ]);
         }
         
@@ -63,24 +69,28 @@ class ProposalController extends Controller
             'divisi' => 'required'
         ]);
          
-        $validatedData['file_permohonan_adp'] = $request->file('file_permohonan_adp')->getClientOriginalName(); 
-        $validatedData['file_estimasi_adp'] = $request->file('file_estimasi_adp')->getClientOriginalName(); 
         $validatedData['no_adp'] = '1234567'; 
         $validatedData['no_capex'] = '7654321';
+        $validatedData['ofc'] = false;
+        $validatedData['gl'] = false;
+        $validatedData['manager'] = false;
+        $validatedData['fm'] = false;
+        $validatedData['acc'] = false;
         $validatedData['user_id'] = auth()->user()->id;
 
+        $file_permohonan = 'p'.time().'.'.$request->file_permohonan_adp->extension();
+        $file_estimasi = 'e'.time().'.'.$request->file_estimasi_adp->extension();
 
-        $file_permohonan = $request->file('file_permohonan_adp');
-        $file_estimasi = $request->file('file_estimasi_adp');
+        $validatedData['file_permohonan_adp'] = $file_permohonan;
+        $validatedData['file_estimasi_adp'] = $file_estimasi;
 
-        $file_permohonan->move('file_permohonan',$file_permohonan->getClientOriginalName());
-
-        $file_estimasi->move('file_estimasi',$file_estimasi->getClientOriginalName());
+        $request->file_permohonan_adp->move(public_path('file_permohonan'), $file_permohonan);
+        $request->file_estimasi_adp->move(public_path('file_estimasi'), $file_estimasi);
 
         Proposal::create($validatedData);
 
         
-        return redirect('/')->with('success', 'Berhasil mengupload proposal');
+        return redirect('/dashboard')->with('success', 'Berhasil mengupload proposal');
 
     }
 
@@ -103,7 +113,7 @@ class ProposalController extends Controller
      */
     public function edit(Proposal $proposal)
     {
-        //
+        // 
     }
 
     /**
@@ -113,9 +123,32 @@ class ProposalController extends Controller
      * @param  \App\Models\Proposal  $proposal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proposal $proposal)
+    public function update($id)
     {
-        //
+        $approved = Proposal::find($id);
+        if(auth()->user()->role_name === 'ofc')
+        {
+            $approved->ofc = true;
+        }
+        if(auth()->user()->role_name === 'gl')
+        {
+            $approved->gl = true;
+        }
+        if(auth()->user()->role_name === 'manager')
+        {
+            $approved->manager = true;
+        }
+        if(auth()->user()->role_name === 'fm')
+        {
+            $approved->fm = true;
+        }
+        if(auth()->user()->role_name === 'acc')
+        {
+            $approved->acc = true;
+        }
+        $approved->update();
+        
+        return redirect('/dashboard')->with('success', 'Berhasil approve');
     }
 
     /**

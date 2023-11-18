@@ -3,10 +3,18 @@
 }
 
 th,
-td{
+td {
     padding: 4px;
 }
 
+td {
+    overflow: hidden;
+}
+
+.bi-file-earmark-arrow-down-fill {
+    color: rgb(0, 103, 200);
+    font-size: 30px;
+}
 body {
     background: rgb(144, 139, 139);
 }
@@ -47,7 +55,8 @@ body {
 .no-capex {
     width: 120px;
 }
-.divisi {
+.divisi,
+.action {
     width: 80px;
 }
 

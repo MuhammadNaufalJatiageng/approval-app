@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProposalController;
+use App\Models\Proposal;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/', ProposalController::class)->except('create')->middleware('auth');
-
+Route::get('/', function () {
+    return redirect('/dashboard');
+});
+Route::resource('/dashboard', ProposalController::class)->except('create', 'edit', 'destroy')->middleware('auth');
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/logout', [LoginController::class, 'logout']);
+Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth');
