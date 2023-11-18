@@ -128,27 +128,47 @@ class ProposalController extends Controller
         $approved = Proposal::find($id);
         if(auth()->user()->role_name === 'ofc')
         {
-            $approved->ofc = true;
+            if ($approved->ofc === 1) {
+                return redirect('/dashboard')->with('warning', 'Anda sudah menyetujui dokumen ini.');
+            } else {
+                $approved->ofc = true;
+            }
         }
         if(auth()->user()->role_name === 'gl')
         {
-            $approved->gl = true;
+            if ($approved->gl === 1) {
+                return redirect('/dashboard')->with('warning', 'Anda sudah menyetujui dokumen ini.');
+            } else {
+                $approved->gl = true;
+            }
         }
-        if(auth()->user()->role_name === 'manager')
+        if(auth()->user()->role_name === 'm')
         {
-            $approved->manager = true;
+            if ($approved->m === 1) {
+                return redirect('/dashboard')->with('warning', 'Anda sudah menyetujui dokumen ini.');
+            } else {
+                $approved->m = true;
+            }
         }
         if(auth()->user()->role_name === 'fm')
         {
-            $approved->fm = true;
+            if ($approved->fm === 1) {
+                return redirect('/dashboard')->with('warning', 'Anda sudah menyetujui dokumen ini.');
+            } else {
+                $approved->fm = true;
+            }
         }
         if(auth()->user()->role_name === 'acc')
         {
-            $approved->acc = true;
+            if ($approved->acc === 1) {
+                return redirect('/dashboard')->with('warning', 'Anda sudah menyetujui dokumen ini.');
+            } else {
+                $approved->acc = true;
+            }
         }
         $approved->update();
         
-        return redirect('/dashboard')->with('success', 'Berhasil approve');
+        return redirect('/dashboard')->with('success', 'Berhasil menyetujui dokumen ini');
     }
 
     /**
