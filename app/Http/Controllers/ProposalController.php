@@ -142,12 +142,12 @@ class ProposalController extends Controller
                 $approved->gl = true;
             }
         }
-        if(auth()->user()->role_name === 'm')
+        if(auth()->user()->role_name === 'manager')
         {
-            if ($approved->m === 1) {
+            if ($approved->manager === 1) {
                 return redirect('/dashboard')->with('warning', 'Anda sudah menyetujui dokumen ini.');
             } else {
-                $approved->m = true;
+                $approved->manager = true;
             }
         }
         if(auth()->user()->role_name === 'fm')
