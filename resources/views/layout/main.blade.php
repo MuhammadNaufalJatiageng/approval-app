@@ -15,7 +15,7 @@
     <title>Dashboard</title>
 </head>
 <body>
-    @include('partials.navbar')
+    @include('layout.partials.navbar')
         
     <main class="container-fluid">
         @yield('body')

@@ -10,11 +10,11 @@
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
                 <div>
                     <ul class="navbar-nav">
-                        <li class="nav-item mx-1 activated">
-                            <a class="nav-link fw-semibold text-light" aria-current="page" href="#">DASHBOARD</a>
+                        <li class="nav-item mx-1 {{ Request::is('dashboard')  ? 'activated' : ''}}">
+                            <a class="nav-link fw-semibold text-light" aria-current="page" href="/dashboard">DASHBOARD</a>
                         </li>
-                        <li class="nav-item mx-1">
-                            <a class="nav-link fw-semibold text-light" aria-current="page" href="#">SETTING</a>
+                        <li class="nav-item mx-1 {{ Request::is('setting')  ? 'activated' : ''}}">
+                            <a class="nav-link fw-semibold text-light" aria-current="page" href="/setting">SETTING</a>
                         </li>
                         <li class="nav-item mx-1">
                             <a class="nav-link fw-semibold text-light" aria-current="page" href="#">MENU</a>
@@ -46,11 +46,10 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              {{ auth()->user()->nama_depan }}
+                              {{ auth()->user()->name }}
                             </a>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item fw-semibold" href="#">Proflie</a></li>
-                              <li><a class="dropdown-item fw-semibold" href="#">Another action</a></li>
                               <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item fw-semibold" href="/logout">Logout</a></li>
                             </ul>

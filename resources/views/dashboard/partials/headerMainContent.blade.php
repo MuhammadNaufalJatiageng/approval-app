@@ -1,13 +1,15 @@
-<div class="row d-flex align-items-center mt-1">
+<div class="row d-flex align-items-center my-1">
     {{-- Upload Button --}}
-    <div class="col-sm-2">
-      <div class="content-wrapper mb-1">
-        <a href="/create" class="btn btn-primary p-2 fs-5" data-bs-toggle="modal" data-bs-target="#modalcreate">
-          <i class="bi bi-upload"></i>
-          Upload
-        </a>
+    @if (auth()->user()->role_name === 'staff' && Request::is('dashboard'))
+      <div class="col-sm-2">
+        <div class="content-wrapper mb-1">
+          <a href="/create" class="btn btn-primary p-2 fs-5" data-bs-toggle="modal" data-bs-target="#modalcreate">
+            <i class="bi bi-upload"></i>
+            Upload
+          </a>
+        </div>
       </div>
-    </div>
+    @endif
     {{-- ALERT --}}
     <div class="col-sm-5">
       @if (session()->has('success'))
@@ -42,10 +44,10 @@
       @enderror
     </div>
     {{-- Searchbar --}}
-    <div class="col-md">
+    {{-- <div class="col-md">
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-    </div>
-  </div>
+    </div> --}}
+</div>

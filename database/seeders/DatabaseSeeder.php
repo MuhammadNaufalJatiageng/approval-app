@@ -32,49 +32,49 @@ class DatabaseSeeder extends Seeder
         User::create([
             'role_name' => 'ofc',
             'role_id' => 2,
-            'nama_depan' => 'OFC',
+            'name' => 'OFC',
             'username' => 'ofc123',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'role_name' => 'gl',
             'role_id' => 2,
-            'nama_depan' => 'gl',
+            'name' => 'gl',
             'username' => 'gl123',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'role_name' => 'manager',
             'role_id' => 2,
-            'nama_depan' => 'manager',
+            'name' => 'manager',
             'username' => 'manager123',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'role_name' => 'fm',
             'role_id' => 2,
-            'nama_depan' => 'fm',
+            'name' => 'fm',
             'username' => 'fm123',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'role_name' => 'acc',
             'role_id' => 2,
-            'nama_depan' => 'acc',
+            'name' => 'acc',
             'username' => 'acc123',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'role_name' => 'staff',
             'role_id' => 3,
-            'nama_depan' => 'Hantoko',
+            'name' => 'Hantoko',
             'username' => 'hantoko',
             'password' => bcrypt('password'),
         ]);
         User::create([
             'role_name' => 'admin',
             'role_id' => 1,
-            'nama_depan' => 'Administrator',
+            'name' => 'Administrator',
             'username' => 'admin123',
             'password' => bcrypt('administrator'),
         ]);

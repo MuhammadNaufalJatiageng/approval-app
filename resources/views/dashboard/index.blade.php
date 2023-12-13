@@ -75,5 +75,6 @@
 @endsection
 
 @section('script')
-  <script src="/js/dashboard.js"></script>
+  <script src="/js/modal.js"></script>
+  <script src="/js/alert.js"></script>
 @endsection
